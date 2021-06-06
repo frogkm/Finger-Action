@@ -40,8 +40,21 @@ public class BoardManager : MonoBehaviour {
     private void handleTouchCircle(Vector2 position, float radius) {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(position, radius);
         foreach (Collider2D collider in colliders) {
-            if (collider.tag == "Block")
-                Destroy(collider.gameObject);
+            if (collider.tag == "Block") {
+                GameObject temp = collider.gameObject;
+                Destroy(collider);
+                Rigidbody2D rg = temp.GetComponent<Rigidbody2D>();
+                SpriteRenderer sr = temp.GetComponent<SpriteRenderer>();
+                sr.color = new Color(255, 0, 0);
+                sr.sortingOrder ++;
+                rg.isKinematic = false;
+                rg.gravityScale = 1f;
+                rg.velocity = Vector2.zero;
+                rg.AddForce(new Vector2(Random.Range(-100f, 100f), 100f));
+                Destroy(temp, 5f);
+
+            }
+                
         }
     }
 
