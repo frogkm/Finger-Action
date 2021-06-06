@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
@@ -13,10 +14,16 @@ public class PlayerController : MonoBehaviour {
     private Moveable recentCloneMoveable;
     private bool fullMoving;
 
+    private int score;
+    private float timePerPoint = 1f;
+    private float timer;
+    public Text scoreText;
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         moveable = GetComponent<Moveable>();
+        timer = timePerPoint;
 
         //fullMove(new Vector2(0, 0.5f), 5f);
     }
@@ -29,6 +36,16 @@ public class PlayerController : MonoBehaviour {
         if (!fullMoving) {
             fullMove(new Vector2(0, Random.Range(-2f, 2f)), Random.Range(1f, 3f));
         }
+        
+        timer -= Time.deltaTime;
+        if (timer <= 0) {
+            score ++;
+            timer = timePerPoint;
+            scoreText.text =  "Score: " + score.ToString();
+        }
+        
+
+
     }
 
     public void fullMove(Vector2 velocity, float amountTime)  {
