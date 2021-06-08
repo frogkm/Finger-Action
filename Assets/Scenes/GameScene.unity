@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 1, g: 1, b: 1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
@@ -349,7 +349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &742446795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -722,9 +722,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1555766155616228104, guid: 421cef1b778ee52babf1a34ccf56e1e2,
         type: 3}
+      propertyPath: waitTime
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1555766155616228104, guid: 421cef1b778ee52babf1a34ccf56e1e2,
+        type: 3}
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 150768030}
+    - target: {fileID: 1555766155616228104, guid: 421cef1b778ee52babf1a34ccf56e1e2,
+        type: 3}
+      propertyPath: maxTimeRange
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1555766155616228104, guid: 421cef1b778ee52babf1a34ccf56e1e2,
+        type: 3}
+      propertyPath: minTimeRange
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 421cef1b778ee52babf1a34ccf56e1e2, type: 3}
 --- !u!1001 &2794835042580509835
@@ -975,6 +990,16 @@ PrefabInstance:
         type: 3}
       propertyPath: blockSize
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6930534781131921048, guid: 99a55d8b5547fc0529800cfa395bf770,
+        type: 3}
+      propertyPath: blockSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6930534781131921048, guid: 99a55d8b5547fc0529800cfa395bf770,
+        type: 3}
+      propertyPath: roundChangeTime
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6930534781131921053, guid: 99a55d8b5547fc0529800cfa395bf770,
         type: 3}

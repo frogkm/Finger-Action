@@ -10,9 +10,12 @@ public class BoardManager : MonoBehaviour {
     public float blockSize;
     public float blockSpeed;
     public int numColliderCircles;
+    public float roundChangeTime = 10f;
 
     private int numYBlocks;
     private TouchController touchController;
+
+    private float gameTimer;
 
     void Start()
     {
@@ -71,5 +74,12 @@ public class BoardManager : MonoBehaviour {
                 handleTouchCircle(circlePos, 0.5f);
             }
         }  
+        gameTimer += Time.deltaTime;
+
+        if (gameTimer >= roundChangeTime) {
+            Debug.Log("Speed up");
+            blockSpeed = blockSpeed * 1.2f;
+            gameTimer = 0;
+        }
     }
 }
