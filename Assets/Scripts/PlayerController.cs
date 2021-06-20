@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour {
     public float minMoveRange = 2f;
     public float maxMoveRange = 4f;
 
+    public Transform topBumper;
+    public Transform bottomBumper;
+
     public float waitTime;
     private float waitTimer;
 
@@ -32,6 +35,7 @@ public class PlayerController : MonoBehaviour {
 
     void Start()
     {
+        scoreText.enabled = SettingsManager.intToBool(PlayerPrefs.GetInt("scoreOn"));
         waitTimer = waitTime;
         rigidBody = GetComponent<Rigidbody2D>();
         moveable = GetComponent<Moveable>();
@@ -57,7 +61,17 @@ public class PlayerController : MonoBehaviour {
                     sign = forceDirection;
                     forceDirection = 0;
                 }
-                fullMove(new Vector2(0, sign * UnityEngine.Random.Range(minMoveRange, maxMoveRange)), UnityEngine.Random.Range(minTimeRange, maxTimeRange));
+                float newVel = sign * UnityEngine.Random.Range(minMoveRange, maxMoveRange);
+                float timeMoved = UnityEngine.Random.Range(minTimeRange, maxTimeRange);
+                while (newVel * timeMoved + transform.position.y < bottomBumper.position.y || newVel * timeMoved + transform.position.y > topBumper.position.y) {
+                    sign = 1;
+                    if (UnityEngine.Random.Range(-1f, 1f) < 0) {
+                        sign = -1;
+                    }
+                    newVel = sign * UnityEngine.Random.Range(minMoveRange, maxMoveRange);
+                    timeMoved = UnityEngine.Random.Range(minTimeRange, maxTimeRange);
+                }  
+                fullMove(new Vector2(0, newVel), timeMoved);
                 waitTimer = waitTime;
             } 
             else {
